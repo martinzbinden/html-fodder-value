@@ -48,8 +48,8 @@
                     console.warn("Firebase Konfiguration nicht gefunden. Cloud-Speicherung ist deaktiviert.");
                 }
 
-                // 3. Futterwerte laden von externer URL
-                const response = await fetch('https://graswachstum.ch/resources/tools/futterwerte.json');
+                // 3. Futterwerte laden von lokaler JSON
+                const response = await fetch('futterwerte.json');
                 if (!response.ok) throw new Error('futterwerte.json konnte nicht geladen werden.');
                 futterWerte = await response.json();
                 
@@ -60,7 +60,7 @@
             } catch (error) {
                 console.error("Initialisierungsfehler:", error);
                 showLoading(false);
-                document.getElementById('app-body').innerHTML = `<p class="text-red-500 text-center">Fehler beim Laden der App-Daten von graswachstum.ch. Bitte versuchen Sie es erneut.</p>`;
+                document.getElementById('app-body').innerHTML = `<p class="text-red-500 text-center">Fehler: futterwerte.json konnte nicht geladen werden. Stellen Sie sicher, dass die Datei existiert.</p>`;
             }
         });
         
